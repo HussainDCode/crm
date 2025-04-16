@@ -15,11 +15,12 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('order_id');
             $table->unsignedBigInteger('product_id');
+            $table->string('product_name')->nullable();
             $table->integer('quantity');
             $table->decimal('unitprice', 10, 2);
             $table->decimal('amount', 10, 2);
             $table->string('discount')->nullable();
-            $table->string('status')->default('active');
+            // $table->string('status')->default('active');
             $table->timestamps();
 
             $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');

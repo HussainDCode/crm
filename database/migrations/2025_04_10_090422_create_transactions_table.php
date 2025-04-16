@@ -15,12 +15,12 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('order_id')->constrained('orders')->onDelete('cascade');
-            $table->string('transaction_id')->unique();
+            // $table->string('transaction_id')->unique();
             $table->decimal('paid_amount', 10, 2);
             $table->decimal('balance', 10, 2)->default(0);
             $table->string('payment_method')->default('cash');
             $table->decimal('tansaction_amount', 10, 2);
-            $table->decimal('transaction_remaining', 10, 2);
+            // $table->decimal('transaction_remaining', 10, 2);
             $table->date('transaction_date')->nullable();
             $table->timestamps();
         });

@@ -79,6 +79,9 @@
                                 </div>
                             </div>
                         </form>
+                        <p>admin@admin.com</p>
+                        <br>
+                        <p>12345678</p>
                     </div>
                 </div>
             </div>

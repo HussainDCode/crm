@@ -8,7 +8,7 @@
     #sidebar ul li a {
         display: block;
         padding: 10px 15px;
-        color: #333;
+        color: #ababab;
         text-decoration: none;
         font-size: 18px;
         transition: background-color 0.3s ease-in-out;
@@ -30,6 +30,10 @@
         color: white;
         border-radius: 5px;
     }
+
+    .fa-solid {
+        color: rgb(0, 255, 140);
+    }
 </style>
 
 <div class="active" id="sidebar">
@@ -38,7 +42,7 @@
             <a href="/home"  target="_blank" rel="noopener noreferrer"><i class="fa fa-home"></i> Home</a>
         </li>
         <li>
-            <a href="{{ route('orders.index') }}" target="_blank" rel="noopener noreferrer"><i class="fa fa-box"></i> Orders</a>
+            <a href="{{ route('orders.order') }}" target="_blank" rel="noopener noreferrer"><i class="fa fa-box"></i> Orders</a>
         </li>
         <li>
             <a href="{{ route('transactions.index') }}" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-wallet"></i> Transactions</a>

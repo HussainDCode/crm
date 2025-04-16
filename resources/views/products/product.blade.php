@@ -415,10 +415,6 @@
             color: rgb(0, 255, 140);
         }
 
-        .page-item.active .page-link {
-            /* background: #2c2c2c;
-            border: 1px solid #2c2c2c; */
-        }
         .page-link:hover {
             background: #2c2c2c;
             border: 1px solid #2c2c2c;
