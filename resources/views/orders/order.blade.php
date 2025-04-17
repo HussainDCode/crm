@@ -464,8 +464,8 @@
         }
 
         /* .table-bordered > :not(caption) > * > * {
-                                    text-align: center;
-                                } */
+                                                    text-align: center;
+                                                } */
         .form-control,
         .form-control:focus {
             background-color: #222;
@@ -590,7 +590,6 @@
                                             <td>
                                                 <select name="product_id[]" class="form-control product_id">
                                                     <option value="" selected disabled>Select Product</option>
-                                                    <!-- Added placeholder -->
                                                     @foreach ($products as $product)
                                                         <option data-price="{{ $product->price }}"
                                                             value="{{ $product->id }}">
@@ -598,17 +597,12 @@
                                                     @endforeach
                                                 </select>
                                             </td>
-                                            {{-- <td>
-                                            <img src="" alt="">
-                                        </td> --}}
+
                                             <td>
                                                 <input type="number" name="quantity[]" class="form-control quantity"
                                                     placeholder="Enter Quantity">
                                             </td>
-                                            {{-- <td>
-                                            <input type="number" name="weight[]" class="form-control weight"
-                                                placeholder="Enter Weight">
-                                        </td> --}}
+
                                             <td>
                                                 <input type="number" name="price[]" class="form-control price"
                                                     placeholder="Enter Price">
@@ -620,10 +614,6 @@
                                             <td>
                                                 <input type="number" name="total_amount[]"
                                                     class="form-control total_amount" placeholder="Total" readonly>
-                                            </td>
-                                            <td>
-                                                {{-- <a href="javascript:void(0);" class="btn btn-sm btn-danger delete"><i
-                                                    class="fa fa-times"></i></a> --}}
                                             </td>
                                         </tr>
                                     </tbody>
@@ -642,6 +632,17 @@
                             <div class="panel">
                                 <div class="row g-3">
                                     <div class="col-md-12">
+                                        <div class="d-flex justify-content-between align-items-center p-3 mb-3">
+                                            <div class="d-flex gap-2">
+                                                <button class="calculator-btn btn btn-success" type="button" id="printOrder">
+                                                    <i class="fas fa-print me-2"></i>Print
+                                                </button>
+                                                <button class="calculator-btn btn btn-success" id="orderHistory">
+                                                    <i class="fas fa-history me-2"></i>History
+                                                </button>
+                                            </div>
+                                        </div>
+
                                         <table class="table table-dark table-striped table-hover">
                                             <tr>
                                                 <td>
@@ -723,106 +724,9 @@
         </div>
     </div>
 
-    <div class="modal right fade" id="addorder" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title fs-5" id="exampleModalLabel">Add order</h4>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-
-                <div class="modal-body">
-                    {{-- {{ route('orders.store') }} --}}
-                    <form action="" method="POST" enctype="multipart/form-data">
-                        @csrf
-
-                        <div class="mb-3">
-                            <label>order Name</label>
-                            <input type="text" name="order_name" class="form-control" placeholder="Enter order Name"
-                                required>
-                        </div>
-
-                        <div class="mb-3">
-                            <label>Size</label>
-                            <input type="number" name="size" class="form-control"
-                                placeholder="Enter Size(e.g. KG, Gaz, Litter, Dozen)" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="">Weight</label>
-                            <input type="number" name="weight" class="form-control" placeholder="Enter Weight">
-                        </div>
-
-                        <div class="mb-3">
-                            <label>Price</label>
-                            <input type="number" name="price" class="form-control" placeholder="Enter Price"
-                                required>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="">Discount %</label>
-                            <input type="number" name="discount_price" class="form-control"
-                                placeholder="Enter Discount">
-                        </div>
-
-                        <div class="mb-3">
-                            <label>Category</label>
-                            <select name="category" class="form-control">
-                                {{-- @foreach ($categories as $category)
-                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                @endforeach --}}
-                            </select>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="">Quantity</label>
-                            <input type="number" name="quantity" class="form-control" placeholder="Enter Quantity">
-                        </div>
-
-                        {{-- <div class="mb-3">
-                            <label for="">Stock</label>
-                            <input type="number" name="alert_stock" class="form-control" placeholder="Enter Stock">
-                        </div> --}}
-
-                        <div class="mb-3">
-                            <label for="">Description</label>
-                            <br>
-                            <textarea class="form-control" name="description" id="" cols="62" rows="3"
-                                placeholder="Enter Description"></textarea>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="">order Code</label>
-                            <input type="text" name="sku" class="form-control" placeholder="Enter order Code">
-                        </div>
-
-                        <div class="mb-3">
-                            <div class="body-title">Upload images <span class="tf-color-1">*</span></div>
-                            <div class="upload-image flex-grow">
-                                <div class="item" id="imgpreview" style="display:none">
-                                    <img class="effect8" alt="Preview">
-                                    <button type="button" id="cancelImage" class="cancel-btn">Remove Image</button>
-                                </div>
-                                <div id="upload-file" class="item up-load">
-                                    <label class="uploadfile" for="myFile">
-                                        <span class="icon">
-                                            <i class="icon-upload-cloud"></i>
-                                        </span>
-                                        <span class="body-text">Drop your images here or select
-                                            <span class="tf-color">click to browse</span>
-                                        </span>
-                                        <input type="file" id="myFile" name="image" accept="image/*">
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Save order</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
+    <div class="modal">
+        <div id="print">
+            @include('reports.receipt')
         </div>
     </div>
 
@@ -923,6 +827,201 @@
                 $('#balance').val(balance.toFixed(2));
             });
         });
+
+        $('form').on('submit', function(e) {
+            e.preventDefault();
+
+            $.ajax({
+                url: $(this).attr('action'),
+                method: 'POST',
+                data: $(this).serialize(),
+                dataType: 'json',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function(response) {
+                    if (response.success) {
+                        // Show success message
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: response.message,
+                            showConfirmButton: false,
+                            timer: 3000,
+                            toast: true,
+                            customClass: {
+                                popup: 'custom-swal-popup',
+                                title: 'custom-swal-title',
+                                icon: 'custom-swal-icon'
+                            }
+                        });
+
+                        // Store order ID for printing
+                        localStorage.setItem('last_order_id', response.order_id);
+
+                        // If the print button was clicked, automatically show receipt
+                        if (window.printAfterSave) {
+                            window.printAfterSave = false;
+                            printReceipt(response.order_id);
+                        }
+                    }
+                },
+                error: function(xhr) {
+                    let errorMsg = 'Error creating order';
+                    if (xhr.responseJSON && xhr.responseJSON.message) {
+                        errorMsg = xhr.responseJSON.message;
+                    }
+
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'error',
+                        title: errorMsg,
+                        showConfirmButton: false,
+                        timer: 5000,
+                        toast: true
+                    });
+                }
+            });
+        });
+
+        // Print button functionality
+        $('#printOrder').on('click', function(e) {
+            e.preventDefault();
+
+            // Check if we need to save the order first
+            const formHasChanges = $('form').serialize() !== $('form').data('original-state');
+            const lastOrderId = localStorage.getItem('last_order_id');
+
+            if (formHasChanges) {
+                // Need to save first, then print
+                window.printAfterSave = true;
+                $('form').submit();
+            } else if (lastOrderId) {
+                // Already saved, just print
+                printReceipt(lastOrderId);
+            } else {
+                // No order to print
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'warning',
+                    title: 'Please save an order first',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    toast: true
+                });
+            }
+        });
+
+        // Function to open receipt window and load data
+        function printReceipt(orderId) {
+            // Open a new window
+            const receiptWindow = window.open('', 'Receipt', 'width=800,height=800,left=' +
+                ((screen.width - 800) / 2) + ',top=' + ((screen.height - 800) / 2));
+
+            // Fetch the receipt data
+            $.ajax({
+                url: '/orders/receipt/' + orderId,
+                method: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                    // Check if data exists
+                    if (!data) {
+                        receiptWindow.close();
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'error',
+                            title: 'Error: No data received',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            toast: true
+                        });
+                        return;
+                    }
+
+                    // Load the receipt template into the new window
+                    $.get('/receipt-template', function(template) {
+                        receiptWindow.document.write(template);
+
+                        // Fill in the receipt data
+                        $(receiptWindow.document).ready(function() {
+                            try {
+                                // Fill customer and order info
+                                $(receiptWindow.document).find('#customer-name').text(data.order
+                                    .name || 'N/A');
+                                $(receiptWindow.document).find('#customer-phone').text(data
+                                    .order.phone || 'N/A');
+                                $(receiptWindow.document).find('#order-id').text(data.order
+                                    .id || 'N/A');
+                                $(receiptWindow.document).find('#order-date').text(data.order
+                                    .created_at ?
+                                    new Date(data.order.created_at).toLocaleString() : 'N/A'
+                                    );
+
+                                // Fill items
+                                let itemsHtml = '';
+                                if (data.orderDetails && data.orderDetails.length > 0) {
+                                    data.orderDetails.forEach(function(item) {
+                                        itemsHtml += `
+                                <tr>
+                                    <td>${item.product_name || 'N/A'}</td>
+                                    <td>${item.quantity || '0'}</td>
+                                    <td>₱${parseFloat(item.unitprice || 0).toFixed(2)}</td>
+                                    <td>${item.discount || '0'}%</td>
+                                    <td>₱${parseFloat(item.amount || 0).toFixed(2)}</td>
+                                </tr>
+                                `;
+                                    });
+                                } else {
+                                    itemsHtml = '<tr><td colspan="5">No items found</td></tr>';
+                                }
+                                $(receiptWindow.document).find('#receipt-items').html(
+                                itemsHtml);
+
+                                // Fill totals
+                                $(receiptWindow.document).find('#total-amount').text('₱' +
+                                    parseFloat(data.transaction?.tansaction_amount || 0)
+                                    .toFixed(2));
+                                $(receiptWindow.document).find('#paid-amount').text('₱' +
+                                    parseFloat(data.transaction?.paid_amount || 0).toFixed(
+                                        2));
+                                $(receiptWindow.document).find('#change-amount').text('₱' +
+                                    parseFloat(data.transaction?.balance || 0).toFixed(2));
+
+                                // Fill footer
+                                $(receiptWindow.document).find('#payment-method').text(
+                                    data.transaction?.payment_method ?
+                                    (data.transaction.payment_method.charAt(0)
+                                    .toUpperCase() +
+                                        data.transaction.payment_method.slice(1)) : 'N/A'
+                                );
+                                $(receiptWindow.document).find('#served-by').text(data.user ||
+                                    'N/A');
+                            } catch (e) {
+                                console.error('Error processing receipt data:', e);
+                            }
+                        });
+                    });
+                },
+                error: function(xhr, status, error) {
+                    receiptWindow.close();
+                    console.error('AJAX error:', xhr.responseText);
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'error',
+                        title: 'Error loading receipt: ' + error,
+                        showConfirmButton: false,
+                        timer: 3000,
+                        toast: true
+                    });
+                }
+            });
+        }
+
+        // Store the original form state for comparison
+        $(document).ready(function() {
+            $('form').data('original-state', $('form').serialize());
+        });
+
         // Check for success message
         @if (Session::has('success-swal'))
             Swal.fire({

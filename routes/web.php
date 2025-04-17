@@ -19,7 +19,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 // Orders routes Below    */
 Route::get('/orders', [OrderController::class, 'index'])->name('orders.order');
 Route::post('/orders/store', [OrderController::class, 'storeOrder'])->name('orders.store');
-
+Route::get('/orders/{id}/receipt', [OrderController::class, 'getReceiptData'])->name('orders.receipt');
 
 
 // Product routes Below    */
